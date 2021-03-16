@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:tag="start"
         android:id="@+id/tvStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,8 +29,8 @@
         android:background="@drawable/shape_guess_input"
         android:ems="10"
         android:gravity="center"
-        android:hint="your guess..."
-        android:inputType="textPersonName"
+        android:hint="@string/start_game"
+        android:inputType="number"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/tvStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,16 +39,17 @@
 
     <TextView
         android:id="@+id/tvNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
         android:background="@drawable/shape_number_guess"
-        android:text="TextView"
-        android:textSize="@dimen/_36sdp"
+        android:text=""
+        android:gravity="center"
+        android:textSize="@dimen/_30sdp"
         app:layout_constraintBottom_toTopOf="@+id/etInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="25" />
+        />
 
     <ImageView
         android:padding="@dimen/_4sdp"
@@ -72,6 +74,8 @@
         app:srcCompat="@drawable/ic_again" />
 
     <ImageView
+        tools:visibility="visible"
+        android:visibility="invisible"
         android:id="@+id/ivArrow"
         android:layout_width="@dimen/_42sdp"
         android:layout_height="@dimen/_42sdp"
