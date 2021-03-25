@@ -13,9 +13,12 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 import java.util.Random;
 import java.util.Timer;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etInput;
     TextView tvStart, tvNumber;
     ImageView ivArrow, ivAgain, ivShowAnswer;
+    FrameLayout frameTop;
+    LottieAnimationView animationView;
 
     int guessNumber = 0;
 
@@ -86,13 +91,40 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void success() {
-        tvNumber.setText("");
-        etInput.setHint(R.string.start_game);
-        tvStart.setText("Start");
-        tvStart.setTag(START);
+        frameTop.setVisibility(View.VISIBLE);
+        animationView.playAnimation();
 
-        guessNumber = 0;
-        Toast.makeText(this, "TRUE", Toast.LENGTH_SHORT).show();
+        animationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                frameTop.setVisibility(View.GONE);
+                tvNumber.setText("");
+                etInput.setText("");
+                etInput.setHint(R.string.start_game);
+                tvStart.setText("Start");
+                tvStart.setTag(START);
+                guessNumber = 0;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+
+
+        Toast.makeText(this, "good job man :)", Toast.LENGTH_SHORT).show();
     }
 
     // answer was higher
@@ -151,5 +183,7 @@ public class MainActivity extends AppCompatActivity {
         ivAgain = findViewById(R.id.ivAgain);
         ivShowAnswer = findViewById(R.id.ivShowAnswer);
         ivArrow = findViewById(R.id.ivArrow);
+        frameTop = findViewById(R.id.frBody);
+        animationView = findViewById(R.id.animView);
     }
 }
